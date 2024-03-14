@@ -20,5 +20,10 @@
 		"react": {
 			"version": "detect"
 		}
-	}
+	},
+	"overrides": [
+		{
+			"files": ["packages/**/src/**/*.ts", "packages/**/src/**/*.tsx"]
+		}
+	]
 }
