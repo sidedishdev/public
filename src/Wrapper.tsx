@@ -1,11 +1,11 @@
 import React from 'react';
 
-interface CallbackEvent {
+export interface CallbackEvent {
 	action: string;
 	payload: unknown;
 }
 
-interface StoreParams {
+export interface WrapperParams {
 	/** Url of your Integrations Captain store */
 	url?: string	
 	/**
@@ -16,7 +16,7 @@ interface StoreParams {
 	callback?: (e: CallbackEvent) => unknown;
 }
 
-export function Store({ url, callback }: StoreParams) {
+export function Wrapper({ url, callback }: WrapperParams) {
 	const iframeRef = React.useRef<HTMLIFrameElement>(null);
 
 	React.useEffect(() => {
