@@ -7,7 +7,7 @@ export interface CallbackEvent {
 
 export interface WrapperParams {
 	/** Url of your Integrations Captain store */
-	url?: string	
+	url?: string;
 	/**
 	 * Callbacks function to handle message.
 	 *
@@ -35,7 +35,7 @@ export function Wrapper({ url, callback }: WrapperParams) {
 					event.source.postMessage(result, event.origin);
 				}
 			}
-		}
+		};
 
 		window.addEventListener('message', messageHandler);
 		return () => window.removeEventListener('message', messageHandler);
@@ -50,8 +50,8 @@ export function Wrapper({ url, callback }: WrapperParams) {
 				height: '100%',
 				border: 'none',
 			}}
-			allow='clipboard-write'
-			loading='lazy'
+			allow="clipboard-write"
+			loading="lazy"
 		/>
 	);
 }
