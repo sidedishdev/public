@@ -1,6 +1,7 @@
 import typescript from '@rollup/plugin-typescript';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import banner2 from 'rollup-plugin-banner2';
 
 const PATH_REACT = 'packages/integrations-captain-react';
 const PATH_UNIVERSAL = 'packages/integrations-captain';
@@ -26,6 +27,8 @@ export default [
 			typescript({
 				tsconfig: `${PATH_REACT}/tsconfig.json`,
 			}),
+			// For easy use with NextJS
+			banner2(() => `'use client';`)
 		],
 	},
 	// integration-captain

@@ -12,6 +12,9 @@
         "build": "rollup -c"
     },
     "devDependencies": {
+        "@rollup/plugin-commonjs": "^25.0.7",
+        "@rollup/plugin-node-resolve": "^15.2.3",
+        "@rollup/plugin-typescript": "^11.1.6",
         "@typescript-eslint/eslint-plugin": "^7.2.0",
         "@typescript-eslint/parser": "^7.2.0",
         "@vercel/style-guide": "^6.0.0",
@@ -22,9 +25,7 @@
         "eslint-plugin-unused-imports": "^3.1.0",
         "prettier": "^3.2.5",
         "rollup": "^4.13.0",
-        "@rollup/plugin-typescript": "^11.1.6",
-        "@rollup/plugin-node-resolve": "^15.2.3",
-        "@rollup/plugin-commonjs": "^25.0.7",
+        "rollup-plugin-banner2": "^1.2.3",
         "typescript": "^5.4.2"
     }
 }
