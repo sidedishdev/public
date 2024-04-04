@@ -1,7 +1,7 @@
 {
-    "name": "integrations-captain",
+    "name": "@integrationscaptain/core",
     "version": "0.1.0",
-    "description": "Helper functions for Integrations Captain",
+    "description": "Integrations Captain Core",
     "keywords": [],
     "license": "MIT",
     "author": "Integrations Captain",

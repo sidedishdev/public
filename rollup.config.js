@@ -3,8 +3,8 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import banner2 from 'rollup-plugin-banner2';
 
-const PATH_REACT = 'packages/integrations-captain-react';
-const PATH_UNIVERSAL = 'packages/integrations-captain';
+const PATH_REACT = 'packages/react';
+const PATH_UNIVERSAL = 'packages/core';
 
 export default [
 	// itegrations-captain-react

@@ -1,7 +1,7 @@
 {
-	"name": "integrations-captain-react",
+	"name": "@integrationscaptain/react",
 	"version": "0.1.0",
-	"description": "Easy integration of Integrations Captain appstore into your React app",
+	"description": "Easy integration of Integrations Captain store into your React app",
 	"keywords": [],
 	"license": "MIT",
 	"author": "Integrations Captain",
