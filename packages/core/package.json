@@ -5,9 +5,10 @@
     "keywords": [],
     "license": "MIT",
     "author": "Integrations Captain",
-    "main": "dist/index.cjs.js",
-    "module": "dist/index.esm.js",
+    "main": "dist/bundle.cjs.js",
+    "module": "dist/bundle.esm.js",
     "types": "dist/index.d.ts",
+    "type": "module",
     "files": [
         "dist"
     ],
