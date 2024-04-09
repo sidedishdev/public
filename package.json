@@ -4,12 +4,12 @@
     "license": "MIT",
     "author": "Integrations Captain",
     "private": "false",
-    "type": "module",
     "workspaces": [
         "packages/*"
     ],
     "scripts": {
-        "build": "rollup -c"
+        "build": "rollup -c",
+        "test": "vitest"
     },
     "devDependencies": {
         "@rollup/plugin-commonjs": "^25.0.7",
@@ -26,6 +26,7 @@
         "prettier": "^3.2.5",
         "rollup": "^4.13.0",
         "rollup-plugin-banner2": "^1.2.3",
-        "typescript": "^5.4.2"
+        "typescript": "^5.4.2",
+        "vitest": "^1.4.0"
     }
 }
