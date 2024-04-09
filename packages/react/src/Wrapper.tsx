@@ -5,6 +5,17 @@ export interface CallbackEvent {
 	payload: unknown;
 }
 
+const PARENT_DOMAIN_KEY = 'parentDomain';
+const TOKEN_KEY = 'token';
+const reservedKeys = [PARENT_DOMAIN_KEY, TOKEN_KEY] as const;
+type ReservedKey = typeof reservedKeys[number];
+
+export type UnsafeParams = {
+	[K in ReservedKey]?: never
+} & {
+	[key: string]: unknown;
+};
+
 export interface WrapperParams {
 	/** Url of your Integrations Captain store */
 	url: string;
@@ -27,6 +38,12 @@ export interface WrapperParams {
 	 * Custom class for the iframe.
 	 */
 	className?: string;
+	/**
+	 * Parameters to pass into the store.
+	 * 
+	 * These parameters are **unsafe** - they are passed directly to the store without validation and can be tampered with.
+	 */
+	unsafeParams: UnsafeParams;
 }
 
 type StorePathChangeEvent = {
@@ -38,7 +55,7 @@ function isStorePathChangeEvent(event: MessageEvent<unknown>): event is MessageE
 	return typeof event.data === 'object' && (event.data as any)['type'] === 'STORE_PATH_CHANGE';
 }
 
-export function Wrapper({ url, callback, style, className, onStorePathChange }: WrapperParams) {
+export function Wrapper({ url, callback, style, className, onStorePathChange, unsafeParams }: WrapperParams) {
 	const iframeRef = React.useRef<HTMLIFrameElement>(null);
 
 	React.useEffect(() => {
@@ -67,20 +84,26 @@ export function Wrapper({ url, callback, style, className, onStorePathChange }: 
 		return () => window.removeEventListener('message', messageHandler);
 	}, [url, callback]);
 
-	const [urlWithDomain, setUrlWithDomain] = React.useState('');
+	const [urlWithParams, setUrlWithParams] = React.useState('');
 
 	// useEffect instead of useMemo for better compatibility with SSR
 	React.useEffect(() => {
 		const domain = encodeURIComponent(window.location.origin);
 		const newUrl = new URL(url);
 		newUrl.searchParams.set('parentDomain', domain);
-		setUrlWithDomain(newUrl.toString());
+		for (const key in unsafeParams) {
+			if (reservedKeys.includes(key as ReservedKey)) {
+				throw new Error(`Key ${key} is reserved and cannot be used in unsafeParams`);
+			}
+			newUrl.searchParams.set(key, encodeURIComponent(JSON.stringify(unsafeParams[key])));
+		}
+		setUrlWithParams(newUrl.toString());
 	}, [url]);
 
 	return (
 		<iframe
 			ref={iframeRef}
-			src={urlWithDomain || url}
+			src={urlWithParams || url}
 			className={className}
 			style={{
 				width: '100%',
