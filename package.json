@@ -4,6 +4,7 @@
     "license": "MIT",
     "author": "Integrations Captain",
     "private": "false",
+    "type": "module",
     "workspaces": [
         "packages/*"
     ],
