@@ -38,7 +38,7 @@ export interface WrapperParams {
 	 *
 	 * These parameters are **unsafe** - they are passed directly to the store without validation and can be tampered with.
 	 */
-	unsafeParams: UnsafeParams;
+	unsafeParams?: UnsafeParams;
 	/**
 	 * Callback function to handle installed change.
 	 *
@@ -153,6 +153,9 @@ export function Wrapper({
 			setUrlWithParams(newUrl.toString());
 		} else {
 			// If the url with params have already been formed, we update params with postMessage
+			if (unsafeParams === undefined) {
+				return;
+			}
 			const iframe = iframeRef.current;
 			if (!iframe) {
 				console.warn('Iframe not found');
