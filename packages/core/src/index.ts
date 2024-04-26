@@ -3,6 +3,11 @@ const INTEGRATION_CAPTAIN_API = 'https://integrations.store/api/v1';
 declare const window: unknown;
 declare const document: unknown;
 
+export type InstalledListing = {
+	listingId: string;
+	data: unknown;
+};
+
 export type AcceptableParameters = {
 	userId?: string;
 	userName?: string;
@@ -10,6 +15,7 @@ export type AcceptableParameters = {
 	accountId?: string;
 	accountName?: string;
 	account?: unknown;
+	installed: (string | InstalledListing)[];
 };
 
 export function createSafeSession({
