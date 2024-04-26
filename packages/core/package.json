@@ -1,21 +1,17 @@
 {
-    "name": "@integrationscaptain/core",
-    "version": "0.2.0",
-    "description": "Integrations Captain Core",
-    "keywords": [],
-    "license": "MIT",
-    "author": "Integrations Captain",
-    "main": "dist/bundle.cjs.js",
-    "module": "dist/bundle.esm.js",
-    "types": "dist/index.d.ts",
-    "type": "module",
-    "files": [
-        "dist"
-    ],
-    "dependencies": {
-        "jsonwebtoken": "^9.0.2"
-    },
-    "devDependencies": {
-        "@types/jsonwebtoken": "^9.0.6"
-    }
+	"name": "@integrationscaptain/core",
+	"version": "0.3.0",
+	"description": "IntegrationsCaptain Core",
+	"keywords": [],
+	"license": "MIT",
+	"author": "IntegrationsCaptain",
+	"type": "module",
+	"main": "dist/bundle.cjs.js",
+	"module": "dist/bundle.esm.js",
+	"types": "dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"dependencies": {},
+	"devDependencies": {}
 }

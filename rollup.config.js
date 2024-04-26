@@ -28,7 +28,7 @@ export default [
 				tsconfig: `${PATH_REACT}/tsconfig.json`,
 			}),
 			// For easy use with NextJS
-			banner2(() => `'use client';`)
+			banner2(() => `'use client';`),
 		],
 	},
 	// integration-captain
