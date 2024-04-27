@@ -4,6 +4,7 @@
 	"description": "Home for public packages of IntegrationsCaptain",
 	"license": "MIT",
 	"author": "IntegrationsCaptain",
+	"type": "module",
 	"workspaces": [
 		"packages/*"
 	],

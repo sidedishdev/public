@@ -7,9 +7,9 @@ const PATH_REACT = 'packages/react';
 const PATH_UNIVERSAL = 'packages/core';
 
 export default [
-	// itegrations-captain-react
+	// integrations-captain-react
 	{
-		input: `${PATH_REACT}/src/index.ts`,
+		input: `${PATH_REACT}/src/index.tsx`,
 		output: [
 			// ES module
 			{
