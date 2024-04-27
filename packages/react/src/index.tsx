@@ -2,18 +2,18 @@ import React, { Ref, forwardRef, useEffect, useImperativeHandle, useRef } from '
 
 export type InstalledListing = {
 	listingId: string;
-	data: Record<string, string>;
+	data?: Record<string, string>;
 };
 
-export type AcceptableParameters = {
-	userId?: string;
-	userName?: string;
-	user?: unknown;
-	accountId?: string;
-	accountName?: string;
-	account?: unknown;
+export type AcceptableParameters = Partial<{
+	userId: string;
+	userName: string;
+	user: unknown;
+	accountId: string;
+	accountName: string;
+	account: unknown;
 	installed: (string | InstalledListing)[];
-};
+}>;
 
 enum StoreMessages {
 	path = 'STORE_PATH_CHANGE',

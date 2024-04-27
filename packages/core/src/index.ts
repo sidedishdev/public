@@ -5,18 +5,18 @@ declare const document: unknown;
 
 export type InstalledListing = {
 	listingId: string;
-	data: unknown;
+	data?: unknown;
 };
 
-export type AcceptableParameters = {
-	userId?: string;
-	userName?: string;
-	user?: unknown;
-	accountId?: string;
-	accountName?: string;
-	account?: unknown;
+export type AcceptableParameters = Partial<{
+	userId: string;
+	userName: string;
+	user: unknown;
+	accountId: string;
+	accountName: string;
+	account: unknown;
 	installed: (string | InstalledListing)[];
-};
+}>;
 export interface CreateResponseType {
 	sessionId: string;
 	expiresAt: string;
