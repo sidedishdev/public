@@ -10,7 +10,9 @@
 	"extends": ["plugin:@typescript-eslint/recommended", "plugin:react/recommended", "plugin:prettier/recommended"],
 	"plugins": ["unused-imports"],
 	"rules": {
-		"unused-imports/no-unused-imports": "warn"
+		"unused-imports/no-unused-imports": "warn",
+		"@typescript-eslint/no-explicit-any": "off",
+		"@typescript-eslint/ban-ts-comment": "off"
 	},
 	"settings": {
 		"react": {

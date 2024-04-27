@@ -1,14 +1,17 @@
 {
 	"name": "@integrationscaptain/react",
-	"version": "0.2.0",
-	"description": "Easy integration of Integrations Captain store into your React app",
+	"version": "0.3.0",
+	"description": "React component to easily embed of IntegrationsCaptain store into your React app",
 	"keywords": [],
 	"license": "MIT",
-	"author": "Integrations Captain",
+	"author": "IntegrationsCaptain",
 	"type": "module",
 	"main": "dist/bundle.cjs.js",
 	"module": "dist/bundle.esm.js",
 	"types": "dist/index.d.ts",
+	"files": [
+		"dist"
+	],
 	"scripts": {
 		"build": "rollup -c",
 		"lint": "eslint . --ext .ts,.tsx",
@@ -16,9 +19,6 @@
 		"prettier": "prettier --check --ignore-unknown .",
 		"prettier:fix": "prettier --write --ignore-unknown ."
 	},
-	"files": [
-		"dist"
-	],
 	"devDependencies": {
 		"@types/react": "^16.8.0",
 		"@types/react-dom": "^16.8.0"
