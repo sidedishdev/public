@@ -17,8 +17,11 @@ export type AcceptableParameters = {
 	account?: unknown;
 	installed: (string | InstalledListing)[];
 };
-
-export function createSafeSession({
+export interface CreateResponseType {
+	sessionId: string;
+	expiresAt: string;
+}
+export async function createSafeSession({
 	apiKey,
 	storeId,
 	domain,
@@ -28,14 +31,14 @@ export function createSafeSession({
 	storeId?: string;
 	domain?: string;
 	data: AcceptableParameters;
-}): Promise<Response> {
+}): Promise<CreateResponseType> {
 	if (typeof window !== 'undefined' || typeof document !== 'undefined') {
 		throw new Error(
 			'createSafeSession should only be used server-side. You are about to leak your secret API key to the client.',
 		);
 	}
 
-	return fetch(INTEGRATION_CAPTAIN_API, {
+	const response = await fetch(INTEGRATION_CAPTAIN_API, {
 		method: 'POST',
 		headers: {
 			Authorization: `Bearer ${apiKey}`,
@@ -47,9 +50,15 @@ export function createSafeSession({
 			data,
 		}),
 	});
+	const responseBody = await response.json();
+	return responseBody as CreateResponseType;
 }
 
-export function updateSafeSession({
+export interface UpdateResponseType {
+	sessionId: string;
+	expiresAt: string;
+}
+export async function updateSafeSession({
 	apiKey,
 	sessionId,
 	data,
@@ -57,14 +66,14 @@ export function updateSafeSession({
 	apiKey: string;
 	sessionId: string;
 	data: AcceptableParameters;
-}): Promise<Response> {
+}): Promise<UpdateResponseType> {
 	if (typeof window !== 'undefined' || typeof document !== 'undefined') {
 		throw new Error(
 			'updateSafeSession should only be used server-side. You are about to leak your secret API key to the client.',
 		);
 	}
 
-	return fetch(INTEGRATION_CAPTAIN_API, {
+	const response = await fetch(INTEGRATION_CAPTAIN_API, {
 		method: 'PUT',
 		headers: {
 			Authorization: `Bearer ${apiKey}`,
@@ -75,16 +84,24 @@ export function updateSafeSession({
 			data,
 		}),
 	});
+	const responseBody = await response.json();
+	return responseBody as UpdateResponseType;
 }
 
-export function revokeSafeSession({ apiKey, sessionId }: { apiKey: string; sessionId: string }): Promise<Response> {
+export async function revokeSafeSession({
+	apiKey,
+	sessionId,
+}: {
+	apiKey: string;
+	sessionId: string;
+}): Promise<boolean> {
 	if (typeof window !== 'undefined' || typeof document !== 'undefined') {
 		throw new Error(
 			'revokeSafeSession should only be used server-side. You are about to leak your secret API key to the client.',
 		);
 	}
 
-	return fetch(INTEGRATION_CAPTAIN_API, {
+	const response = await fetch(INTEGRATION_CAPTAIN_API, {
 		method: 'DELETE',
 		headers: {
 			Authorization: `Bearer ${apiKey}`,
@@ -94,4 +111,5 @@ export function revokeSafeSession({ apiKey, sessionId }: { apiKey: string; sessi
 			sessionId,
 		}),
 	});
+	return response.ok;
 }
