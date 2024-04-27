@@ -1,6 +1,6 @@
 {
 	"name": "@integrationscaptain/react",
-	"version": "0.3.2",
+	"version": "0.3.3",
 	"description": "React component to easily embed of IntegrationsCaptain store into your React app",
 	"keywords": [],
 	"license": "MIT",
