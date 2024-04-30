@@ -3,7 +3,7 @@
 	"version": "0.4.0",
 	"description": "SideDish Core",
 	"keywords": [],
-	"license": "MIT",
+	"license": "ISC",
 	"author": "SideDish",
 	"type": "module",
 	"main": "dist/bundle.cjs.js",

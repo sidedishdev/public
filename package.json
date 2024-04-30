@@ -2,7 +2,7 @@
 	"name": "sidedish-public",
 	"private": "false",
 	"description": "Home for public packages of SideDish",
-	"license": "MIT",
+	"license": "ISC",
 	"author": "SideDish",
 	"type": "module",
 	"workspaces": [

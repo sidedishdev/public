@@ -7,7 +7,7 @@ const PATH_REACT = 'packages/react';
 const PATH_UNIVERSAL = 'packages/core';
 
 export default [
-	// integrations-captain-react
+	// react
 	{
 		input: `${PATH_REACT}/src/index.tsx`,
 		output: [
@@ -31,7 +31,7 @@ export default [
 			banner2(() => `'use client';`),
 		],
 	},
-	// integration-captain
+	// core
 	{
 		input: `${PATH_UNIVERSAL}/src/index.ts`,
 		output: [
