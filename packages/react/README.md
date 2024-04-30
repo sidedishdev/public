@@ -1,5 +1,5 @@
-# IntegrationsCaptain React
+# SideDish React
 
-This package allows you to easily integrate with the IntegrationsCaptain store using this prebuilt react component.
+This package allows you to easily integrate with the SideDish store using this prebuilt react component.
 
-Please refer to the [docs](https://integrationscaptain.mintlify.app/) for detailed instructions.
+Please refer to the [docs](https://sidedish.mintlify.app/) for detailed instructions.

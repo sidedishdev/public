@@ -1,3 +1,3 @@
-# Integratins Captain monorepo
+# SideDish monorepo
 
-A home for public Integrations Captain packages.
+A home for public SideDish packages.

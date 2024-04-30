@@ -1,9 +1,9 @@
 {
-	"name": "integrations-captain-public",
+	"name": "sidedish-public",
 	"private": "false",
-	"description": "Home for public packages of IntegrationsCaptain",
+	"description": "Home for public packages of SideDish",
 	"license": "MIT",
-	"author": "IntegrationsCaptain",
+	"author": "SideDish",
 	"type": "module",
 	"workspaces": [
 		"packages/*"
