@@ -7,9 +7,9 @@ const PATH_REACT = 'packages/react';
 const PATH_UNIVERSAL = 'packages/core';
 
 export default [
-	// itegrations-captain-react
+	// react
 	{
-		input: `${PATH_REACT}/src/index.ts`,
+		input: `${PATH_REACT}/src/index.tsx`,
 		output: [
 			// ES module
 			{
@@ -28,10 +28,10 @@ export default [
 				tsconfig: `${PATH_REACT}/tsconfig.json`,
 			}),
 			// For easy use with NextJS
-			banner2(() => `'use client';`)
+			banner2(() => `'use client';`),
 		],
 	},
-	// integration-captain
+	// core
 	{
 		input: `${PATH_UNIVERSAL}/src/index.ts`,
 		output: [
