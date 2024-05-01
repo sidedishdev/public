@@ -16,14 +16,14 @@ export type AcceptableParameters = Partial<{
 }>;
 
 export enum StoreMessages {
-	path = 'STORE_PATH_CHANGE',
+	pathChanged = 'STORE_PATH_CHANGED',
 	callback = 'CALLBACK',
 	unsafeParamsChange = 'UNSAFE_PARAMS_CHANGE',
 	sessionReload = 'SESSION_RELOAD',
 }
 
 export interface PathChangedEventMessage {
-	type: StoreMessages.path;
+	type: 'STORE_PATH_CHANGED';
 	path: string;
 }
 export interface CallbackEventMessage {
@@ -76,7 +76,7 @@ function isEventType(event: MessageEvent<unknown>, type: string): event is Messa
 	return false;
 }
 const isStorePathChangeEvent = (event: MessageEvent<unknown>): event is MessageEvent<PathChangedEventMessage> =>
-	isEventType(event, StoreMessages.path);
+	isEventType(event, StoreMessages.pathChanged);
 const isCallbackEvent = (event: MessageEvent): event is MessageEvent<CallbackEventMessage> =>
 	isEventType(event, StoreMessages.callback);
 
