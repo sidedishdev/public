@@ -1,8 +1,8 @@
 import React, { Ref, forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
 
-export type InstalledListing = {
+export type Purchase = {
 	listingId: string;
-	data?: Record<string, string>;
+	data?: unknown;
 };
 
 export type AcceptableParameters = Partial<{
@@ -12,7 +12,7 @@ export type AcceptableParameters = Partial<{
 	accountId: string;
 	accountName: string;
 	account: unknown;
-	installed: (string | InstalledListing)[];
+	purchases: (string | Purchase)[];
 }>;
 
 export enum StoreMessages {
@@ -153,7 +153,7 @@ export const Store = forwardRef(
 				if (unsafeParams) {
 					for (const key in unsafeParams) {
 						// @ts-ignore
-						newUrl.searchParams.set(key, encodeURIComponent(JSON.stringify(unsafeParams[key])));
+						newUrl.searchParams.set(`$${key}`, encodeURIComponent(JSON.stringify(unsafeParams[key])));
 					}
 				}
 				if (sessionId) {

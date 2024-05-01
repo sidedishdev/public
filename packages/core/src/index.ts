@@ -3,7 +3,7 @@ const SIDEDISH_API = 'https://api.sidedish.dev/v1';
 declare const window: unknown;
 declare const document: unknown;
 
-export type InstalledListing = {
+export type Purchase = {
 	listingId: string;
 	data?: unknown;
 };
@@ -15,8 +15,9 @@ export type AcceptableParameters = Partial<{
 	accountId: string;
 	accountName: string;
 	account: unknown;
-	installed: (string | InstalledListing)[];
+	purchases: (string | Purchase)[];
 }>;
+
 export interface CreateResponseType {
 	sessionId: string;
 	expiresAt: string;
