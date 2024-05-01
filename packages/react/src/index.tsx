@@ -15,18 +15,18 @@ export type AcceptableParameters = Partial<{
 	installed: (string | InstalledListing)[];
 }>;
 
-enum StoreMessages {
+export enum StoreMessages {
 	path = 'STORE_PATH_CHANGE',
 	callback = 'CALLBACK',
 	unsafeParamsChange = 'UNSAFE_PARAMS_CHANGE',
 	sessionReload = 'SESSION_RELOAD',
 }
 
-interface PathChangedEventMessage {
+export interface PathChangedEventMessage {
 	type: StoreMessages.path;
 	path: string;
 }
-interface CallbackEventMessage {
+export interface CallbackEventMessage {
 	type: 'CALLBACK';
 	actionIdentifier: string;
 	payload: unknown;
@@ -60,16 +60,16 @@ export interface StoreComponentMethods {
 	updateUnsafeParams: (params: AcceptableParameters) => void;
 }
 
-interface UnsafeParamsChangeMessage {
+export interface UnsafeParamsChangeMessage {
 	type: StoreMessages.unsafeParamsChange;
 	params: AcceptableParameters;
 }
-interface SessionReloadMessage {
+export interface SessionReloadMessage {
 	type: StoreMessages.sessionReload;
 }
-type Message = UnsafeParamsChangeMessage | SessionReloadMessage;
+export type Message = UnsafeParamsChangeMessage | SessionReloadMessage;
 
-type StoreEventMessage = PathChangedEventMessage | CallbackEventMessage;
+export type StoreEventMessage = PathChangedEventMessage | CallbackEventMessage;
 function isEventType(event: MessageEvent<unknown>, type: string): event is MessageEvent<StoreEventMessage> {
 	if (event && event.data && typeof event.data === 'object' && 'type' in event.data && event.data['type'] === type)
 		return true;

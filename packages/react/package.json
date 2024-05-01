@@ -1,6 +1,6 @@
 {
 	"name": "@sidedish/react",
-	"version": "0.4.0",
+	"version": "0.4.1",
 	"description": "React component to easily embed of SideDish store into your React app",
 	"keywords": [],
 	"license": "ISC",
