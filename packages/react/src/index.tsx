@@ -42,6 +42,7 @@ export interface StoreProps {
 	page?: string;
 	listingId?: string;
 	unsafeParams?: AcceptableParameters;
+	internal?: boolean;
 
 	/**
 	 * Callback function to handle store path change.
@@ -82,7 +83,18 @@ const isCallbackEvent = (event: MessageEvent): event is MessageEvent<CallbackEve
 
 export const Store = forwardRef(
 	(
-		{ style, className, url, page, listingId, sessionId, unsafeParams, onPathChange, onCallback }: StoreProps,
+		{
+			style,
+			className,
+			url,
+			page,
+			listingId,
+			sessionId,
+			unsafeParams,
+			internal,
+			onPathChange,
+			onCallback,
+		}: StoreProps,
 		ref: Ref<StoreComponentMethods>,
 	) => {
 		const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -158,6 +170,9 @@ export const Store = forwardRef(
 				}
 				if (sessionId) {
 					newUrl.searchParams.set('$sessionId', sessionId);
+				}
+				if (internal) {
+					newUrl.searchParams.set('$internal', 'true');
 				}
 				if (page) {
 					newUrl.pathname = `/${page}${newUrl.pathname}`;
