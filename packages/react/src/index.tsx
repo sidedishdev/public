@@ -157,10 +157,10 @@ export const Store = forwardRef(
 					}
 				}
 				if (sessionId) {
-					newUrl.searchParams.set('sessionId', sessionId);
+					newUrl.searchParams.set('$sessionId', sessionId);
 				}
 				if (page) {
-					newUrl.pathname = `/p=${page}${newUrl.pathname}`;
+					newUrl.pathname = `/${page}${newUrl.pathname}`;
 				}
 				if (listingId) {
 					newUrl.pathname = `/l/${listingId}`;
