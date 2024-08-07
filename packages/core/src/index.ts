@@ -1,4 +1,4 @@
-const SIDEDISH_API = 'https://api.sidedish.dev/v1';
+const SIDEDISH_API = 'https://api.sidedish.dev/v1/safe-sessions';
 
 declare const window: unknown;
 declare const document: unknown;
