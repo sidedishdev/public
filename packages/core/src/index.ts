@@ -1,4 +1,5 @@
-const SIDEDISH_API = 'https://api.sidedish.dev/v1';
+const SIDEDISH_API_URL = process.env.SIDEDISH_API_URL ?? 'https://api.sidedish.dev/v1';
+const SAFE_SESSIONS_URL = `${SIDEDISH_API_URL}/safe-sessions`;
 
 declare const window: unknown;
 declare const document: unknown;
@@ -39,7 +40,7 @@ export async function createSafeSession({
 		);
 	}
 
-	const response = await fetch(SIDEDISH_API, {
+	const response = await fetch(SAFE_SESSIONS_URL, {
 		method: 'POST',
 		headers: {
 			Authorization: `Bearer ${apiKey}`,
@@ -74,14 +75,13 @@ export async function updateSafeSession({
 		);
 	}
 
-	const response = await fetch(SIDEDISH_API, {
+	const response = await fetch(`${SAFE_SESSIONS_URL}/${sessionId}`, {
 		method: 'PUT',
 		headers: {
 			Authorization: `Bearer ${apiKey}`,
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify({
-			sessionId,
 			data,
 		}),
 	});
@@ -102,15 +102,12 @@ export async function revokeSafeSession({
 		);
 	}
 
-	const response = await fetch(SIDEDISH_API, {
+	const response = await fetch(`${SAFE_SESSIONS_URL}/${sessionId}`, {
 		method: 'DELETE',
 		headers: {
 			Authorization: `Bearer ${apiKey}`,
 			'Content-Type': 'application/json',
 		},
-		body: JSON.stringify({
-			sessionId,
-		}),
 	});
 	return response.ok;
 }
