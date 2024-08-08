@@ -75,14 +75,13 @@ export async function updateSafeSession({
 		);
 	}
 
-	const response = await fetch(SAFE_SESSIONS_URL, {
+	const response = await fetch(`${SAFE_SESSIONS_URL}/${sessionId}`, {
 		method: 'PUT',
 		headers: {
 			Authorization: `Bearer ${apiKey}`,
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify({
-			sessionId,
 			data,
 		}),
 	});
@@ -103,15 +102,12 @@ export async function revokeSafeSession({
 		);
 	}
 
-	const response = await fetch(SAFE_SESSIONS_URL, {
+	const response = await fetch(`${SAFE_SESSIONS_URL}/${sessionId}`, {
 		method: 'DELETE',
 		headers: {
 			Authorization: `Bearer ${apiKey}`,
 			'Content-Type': 'application/json',
 		},
-		body: JSON.stringify({
-			sessionId,
-		}),
 	});
 	return response.ok;
 }
