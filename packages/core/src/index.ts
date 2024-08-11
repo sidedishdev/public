@@ -9,9 +9,8 @@ export type Purchase = {
 	data?: unknown;
 };
 
-export type AcceptableParameters = Partial<{
+export type AcceptableParameters = { userId: string } & Partial<{
 	userId: string;
-	userName: string;
 	user: unknown;
 	accountId: string;
 	accountName: string;
