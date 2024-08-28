@@ -27,12 +27,10 @@ export interface CreateResponseType {
 export async function createSession({
 	apiKey,
 	storeId,
-	domain,
 	data,
 }: {
 	apiKey: string;
 	storeId?: string;
-	domain?: string;
 	data: AcceptableParameters;
 }): Promise<CreateResponseType> {
 	if (typeof window !== 'undefined' || typeof document !== 'undefined') {
@@ -49,7 +47,6 @@ export async function createSession({
 		},
 		body: JSON.stringify({
 			storeId,
-			domain,
 			data,
 		}),
 	});
