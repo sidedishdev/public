@@ -16,7 +16,7 @@ export type AcceptableParameters = {
 	accountId?: string;
 	accountName?: string;
 	account?: unknown;
-	purchases: (string | Purchase)[];
+	purchases?: (string | Purchase)[];
 };
 
 export interface CreateResponseType {
