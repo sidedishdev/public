@@ -1,53 +1,52 @@
 const SIDEDISH_API = 'https://api.sidedish.dev/v1';
+const SESSIONS_URL = `${SIDEDISH_API}/sessions`;
 
 declare const window: unknown;
 declare const document: unknown;
 
 export type Purchase = {
-	listingId: string;
+	productId: string;
 	data?: unknown;
 };
 
-export type AcceptableParameters = Partial<{
+export type AcceptableParameters = {
 	userId: string;
-	userName: string;
-	user: unknown;
-	accountId: string;
-	accountName: string;
-	account: unknown;
-	purchases: (string | Purchase)[];
-}>;
+	userName?: string;
+	user?: unknown;
+	accountId?: string;
+	accountName?: string;
+	account?: unknown;
+	purchases?: (string | Purchase)[];
+};
 
 export interface CreateResponseType {
 	sessionId: string;
 	expiresAt: string;
 }
-export async function createSafeSession({
+
+export async function createSession({
 	apiKey,
 	storeId,
-	domain,
 	data,
 }: {
 	apiKey: string;
 	storeId?: string;
-	domain?: string;
 	data: AcceptableParameters;
 }): Promise<CreateResponseType> {
 	if (typeof window !== 'undefined' || typeof document !== 'undefined') {
 		throw new Error(
-			'createSafeSession should only be used server-side. You are about to leak your secret API key to the client.',
+			'createSession should only be used server-side. You are about to leak your secret API key to the client.',
 		);
 	}
 
-	const response = await fetch(SIDEDISH_API, {
+	const response = await fetch(SESSIONS_URL, {
 		method: 'POST',
 		headers: {
-			Authorization: `Bearer ${apiKey}`,
+			'X-API-Token': apiKey,
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify({
 			storeId,
-			domain,
 			data,
 		}),
 	});
@@ -59,7 +58,7 @@ export interface UpdateResponseType {
 	sessionId: string;
 	expiresAt: string;
 }
-export async function updateSafeSession({
+export async function updateSession({
 	apiKey,
 	sessionId,
 	data,
@@ -70,18 +69,17 @@ export async function updateSafeSession({
 }): Promise<UpdateResponseType> {
 	if (typeof window !== 'undefined' || typeof document !== 'undefined') {
 		throw new Error(
-			'updateSafeSession should only be used server-side. You are about to leak your secret API key to the client.',
+			'updateSession should only be used server-side. You are about to leak your secret API key to the client.',
 		);
 	}
 
-	const response = await fetch(SIDEDISH_API, {
-		method: 'PUT',
+	const response = await fetch(`${SESSIONS_URL}/${sessionId}`, {
+		method: 'PATCH',
 		headers: {
-			Authorization: `Bearer ${apiKey}`,
+			'X-API-Token': apiKey,
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify({
-			sessionId,
 			data,
 		}),
 	});
@@ -89,28 +87,19 @@ export async function updateSafeSession({
 	return responseBody as UpdateResponseType;
 }
 
-export async function revokeSafeSession({
-	apiKey,
-	sessionId,
-}: {
-	apiKey: string;
-	sessionId: string;
-}): Promise<boolean> {
+export async function revokeSession({ apiKey, sessionId }: { apiKey: string; sessionId: string }): Promise<boolean> {
 	if (typeof window !== 'undefined' || typeof document !== 'undefined') {
 		throw new Error(
-			'revokeSafeSession should only be used server-side. You are about to leak your secret API key to the client.',
+			'revokeSession should only be used server-side. You are about to leak your secret API key to the client.',
 		);
 	}
 
-	const response = await fetch(SIDEDISH_API, {
+	const response = await fetch(`${SESSIONS_URL}/${sessionId}`, {
 		method: 'DELETE',
 		headers: {
-			Authorization: `Bearer ${apiKey}`,
+			'X-API-Token': apiKey,
 			'Content-Type': 'application/json',
 		},
-		body: JSON.stringify({
-			sessionId,
-		}),
 	});
 	return response.ok;
 }
